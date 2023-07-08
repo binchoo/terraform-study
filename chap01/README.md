@@ -1,4 +1,4 @@
-## Insignts
+## Insights
 
 - [최신 AMI ID 취득법](https://github.com/binchoo/terraform-study/blob/main/chap01/resolve-latest-ami.md)
 - [나의 Public IP 취득법](https://github.com/binchoo/terraform-study/blob/main/chap01/resolve-my-public-ip.md)
