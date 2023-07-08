@@ -25,8 +25,8 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-- `ssh-keygen`  수행하여 Public Key, Private Key를 발급한다.
-- AWS EC2 인스턴스에는 방금 생성한 Public Key를 보관시키면 된다. 인스턴스 생성 과정에서 키-페어를 지정해 주어야 한다.
+- `ssh-keygen`  수행하여 Public Key와 Private Key를 발급한다.
+- AWS EC2 인스턴스에게는 Public Key를 보관시키면 된다. 인스턴스 리소스를 명세하는 과정에서 `key-name`을 지정해야 한다.
 
 ## Terraform [resource aws_key_pair](https://registry.terraform.io/providers/hashicorp/aws/3.9.0/docs/resources/key_pair)
 
