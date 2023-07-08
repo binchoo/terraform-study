@@ -9,7 +9,7 @@
 ## Homeworks
 
 - [과제1. Apache2 서버 띄우기](https://github.com/binchoo/terraform-study/tree/main/chap01/hw1.httpd-webserver)
-- [과제2. Apache2 서버 50000 포트애 띄우기](https://github.com/binchoo/terraform-study/tree/main/chap01/hw2.httpd-webserver-on-50000)
+- [과제2. Apache2 서버 50000 포트에 띄우기](https://github.com/binchoo/terraform-study/tree/main/chap01/hw2.httpd-webserver-on-50000)
 
 ## Challeges
 
