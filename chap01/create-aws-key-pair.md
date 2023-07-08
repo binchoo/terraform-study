@@ -30,7 +30,7 @@ The key's randomart image is:
 
 ## Terraform [resource aws_key_pair](https://registry.terraform.io/providers/hashicorp/aws/3.9.0/docs/resources/key_pair)
 
-```json
+```hcl
 data "local_file" "public_key" {
   filename = "my-key.pem.pub"
 }

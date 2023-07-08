@@ -8,7 +8,7 @@ curl icanhazip.com
 
 ## Terraform [datasource http](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http)
 
-```json
+```hcl
 data "http" "my_public_ip" {
   url = "http://icanhazip.com"
 }

@@ -14,7 +14,7 @@ aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/amzn2-ami-ke
 
 **amazon-linux2**
 
-```json
+```hcl
 # AMI 취득법 1
 data "aws_ssm_parameter" "amzn2_latest" {
     name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-kernel-5.10-hvm-x86_64-gp2"
@@ -45,7 +45,7 @@ aws ec2 describe-images --owners self amazon --filter 'Name=name,Values=amzn2-am
 
 **amazon-linux2**
 
-```json
+```hcl
 data "aws_ami" "linux" {
     owners = ["amazon"]
     most_recent = true
