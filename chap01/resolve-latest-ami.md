@@ -2,6 +2,8 @@
 
 ## 1. AWS SSM
 
+이 방식은 AWS SSM에서 관리되는 파라미터를 조회하여 최신 AMI ID를 획득한다.
+
 ### AWS CLI
 
 **amazon-linux2**
@@ -30,6 +32,8 @@ resource "aws_instance" "example" {
 ```
 
 ## 2. AWS EC2 AMI
+
+AMI 이미지들을 조회할 때 최신 이미지만 골라내는 방식도 가능하다.
 
 ## AWS CLI
 
@@ -76,5 +80,7 @@ resource "aws_instance" "example" {
 
 ![latest-ami-by-terraform](https://github.com/binchoo/terraform-study/assets/15683098/f78c3ead-b722-4c35-8319-8ff1f8db3f53)
 
-- 마찬가지로, [`ami-0314c6b4d666713d7`](https://ap-northeast-2.console.aws.amazon.com/ec2/home?region=ap-northeast-2#ImageDetails:imageId=ami-0314c6b4d666713d7) 가 출력된다.
-- 테라폼과 AWS CLI를 모두 동일한 AMI ID를 최신 amazon-linux2 이미지로 가져왔다. 크로스 체크 완료.
+- 마찬가지로 [`ami-0314c6b4d666713d7`](https://ap-northeast-2.console.aws.amazon.com/ec2/home?region=ap-northeast-2#ImageDetails:imageId=ami-0314c6b4d666713d7) 가 출력된다.
+- 테라폼과 AWS CLI를 모두 동일한 AMI ID를 최신 amazon-linux2 이미지로 가져왔다. (크로스 체크 완료)
+
+어찌보면 테라폼에서 "datasource"를 사용한다는 것은 AWS CLI의 `descibe-*` 내지 `get-*` 호출을 추상화해서 쓰겠다는 의미 같다. 
