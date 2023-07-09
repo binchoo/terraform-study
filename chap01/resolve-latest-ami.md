@@ -12,7 +12,8 @@ EC2 AMI의 최신 이미지를 알아내고자 할 때 이용해 볼만한 2가�
  - [Working with public parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-public-parameters.html)
   - [Query for the lastest Amazon Linux AMI IDs](https://aws.amazon.com/ko/blogs/compute/query-for-the-latest-amazon-linux-ami-ids-using-aws-systems-manager-parameter-store/)
   - [Query for the lastest Windows AMI IDs](https://aws.amazon.com/ko/blogs/mt/query-for-the-latest-windows-ami-using-systems-manager-parameter-store/)  
- - [Terraform datasource ssm_parameter](https://registry.terraform.io/providers/hashicorp/aws/3.28.0/docs/data-sources/ssm_parameter)
+ - [Terraform datasource aws_ssm_parameter](https://registry.terraform.io/providers/hashicorp/aws/3.28.0/docs/data-sources/ssm_parameter)
+ - [Terraform datasource aws_ami](https://registry.terraform.io/providers/hashicorp/aws/3.54.0/docs/data-sources/ami)
 
 ## 1. AWS SSM
 
