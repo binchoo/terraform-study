@@ -399,7 +399,7 @@ AWS EC2 서비스를 통해 AMI 이미지들을 조회하고, 최신 이미지�
 
 ## AWS CLI
 
-`ec2 descrobe-images`를 호출하며 이미지 항목을 `CreationDate` 속성으로 정렬한 뒤 제일 마지막 항목을 취하면, 최근 AMI 이미지를 알아낼 수 있습니다.
+`ec2 describe-images`를 호출하며 이미지 항목을 `CreationDate` 속성으로 정렬한 뒤 제일 마지막 항목을 취하면, 최근 AMI 이미지를 알아낼 수 있습니다.
 
 
 ```bash
@@ -420,7 +420,7 @@ aws ec2 describe-images --owners self amazon --filter 'Name=name,Values=amzn2-am
 
 비슷한 방식으로 HCL의 `aws_ami` 데이터소스를 선언하여 `most_recent` 속성을 **참**으로 두면, 더 편리하게 최신 AMI ID를 알아낼 수 있습니다.
 
-**amazon-linux2**
+**amzn2-ami-kernel-5.10-hvm-x86_64-gp2 조회**
 
 ```hcl
 data "aws_ami" "linux" {
