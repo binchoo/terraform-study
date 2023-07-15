@@ -18,13 +18,16 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_subnet" "pubsub" {
-  vpc_id     = aws_vpc.grafana.id
-  cidr_block = "10.254.0.0/24"
+  for_each = local.subnets
+  vpc_id   = aws_vpc.grafana.id
+
+  availability_zone = each.value.az
+  cidr_block        = each.value.cidr
 
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "sbn-demo-grafana"
+    Name = "sbn-${each.key}"
   }
 }
 
@@ -42,6 +45,7 @@ resource "aws_route_table" "route" {
 }
 
 resource "aws_route_table_association" "route_asso" {
-  subnet_id      = aws_subnet.pubsub.id
+  for_each       = aws_subnet.pubsub
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.route.id
 }

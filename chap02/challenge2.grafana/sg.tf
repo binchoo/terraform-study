@@ -1,11 +1,3 @@
-data "http" "curl_ip" {
-  url = "http://icanhazip.com"
-}
-
-locals {
-  my_public_ip = "${chomp(data.http.curl_ip.response_body)}/32"
-}
-
 resource "aws_security_group" "sg" {
   name        = "seg-demo-grafana"
   description = "seg-demo-grafana"
@@ -18,7 +10,7 @@ resource "aws_security_group_rule" "ssh_rule" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = [local.instance_connect_ip]
   security_group_id = aws_security_group.sg.id
 }
 

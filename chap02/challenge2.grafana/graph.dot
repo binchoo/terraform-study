@@ -2,62 +2,80 @@ digraph {
 	compound = "true"
 	newrank = "true"
 	subgraph "root" {
-		"[root] aws_instance.grafana_ec2 (expand)" [label = "aws_instance.grafana_ec2", shape = "box"]
+		"[root] aws_instance.grafana (expand)" [label = "aws_instance.grafana", shape = "box"]
 		"[root] aws_internet_gateway.igw (expand)" [label = "aws_internet_gateway.igw", shape = "box"]
 		"[root] aws_route_table.route (expand)" [label = "aws_route_table.route", shape = "box"]
 		"[root] aws_route_table_association.route_asso (expand)" [label = "aws_route_table_association.route_asso", shape = "box"]
-		"[root] aws_security_group.grafana_sg (orphan)" [label = "aws_security_group.grafana_sg", shape = "box"]
 		"[root] aws_security_group.sg (expand)" [label = "aws_security_group.sg", shape = "box"]
 		"[root] aws_security_group_rule.grafana_rule (expand)" [label = "aws_security_group_rule.grafana_rule", shape = "box"]
 		"[root] aws_security_group_rule.outbound_rule (expand)" [label = "aws_security_group_rule.outbound_rule", shape = "box"]
 		"[root] aws_security_group_rule.ssh_rule (expand)" [label = "aws_security_group_rule.ssh_rule", shape = "box"]
 		"[root] aws_subnet.pubsub (expand)" [label = "aws_subnet.pubsub", shape = "box"]
 		"[root] aws_vpc.grafana (expand)" [label = "aws_vpc.grafana", shape = "box"]
-		"[root] aws_vpc_peering_connection.peer_j2d (orphan)" [label = "aws_vpc_peering_connection.peer_j2d", shape = "box"]
 		"[root] data.aws_ami.latest_amzn2 (expand)" [label = "data.aws_ami.latest_amzn2", shape = "box"]
-		"[root] data.http.curl_ip (expand)" [label = "data.http.curl_ip", shape = "box"]
-		"[root] data.local_file.userdata_file (expand)" [label = "data.local_file.userdata_file", shape = "box"]
+		"[root] data.aws_ec2_instance_type_offerings.azs (expand)" [label = "data.aws_ec2_instance_type_offerings.azs", shape = "box"]
+		"[root] data.aws_region.current (expand)" [label = "data.aws_region.current", shape = "box"]
+		"[root] data.http.instance_connect_ip_ranges (expand)" [label = "data.http.instance_connect_ip_ranges", shape = "box"]
+		"[root] data.http.public_ip (expand)" [label = "data.http.public_ip", shape = "box"]
+		"[root] data.jq_query.instance_connect_regional_ip_range (expand)" [label = "data.jq_query.instance_connect_regional_ip_range", shape = "box"]
+		"[root] data.local_file.userdata (expand)" [label = "data.local_file.userdata", shape = "box"]
 		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
 		"[root] provider[\"registry.terraform.io/hashicorp/http\"]" [label = "provider[\"registry.terraform.io/hashicorp/http\"]", shape = "diamond"]
 		"[root] provider[\"registry.terraform.io/hashicorp/local\"]" [label = "provider[\"registry.terraform.io/hashicorp/local\"]", shape = "diamond"]
-		"[root] aws_instance.grafana_ec2 (expand)" -> "[root] aws_internet_gateway.igw (expand)"
-		"[root] aws_instance.grafana_ec2 (expand)" -> "[root] aws_security_group.sg (expand)"
-		"[root] aws_instance.grafana_ec2 (expand)" -> "[root] aws_subnet.pubsub (expand)"
-		"[root] aws_instance.grafana_ec2 (expand)" -> "[root] data.aws_ami.latest_amzn2 (expand)"
-		"[root] aws_instance.grafana_ec2 (expand)" -> "[root] data.local_file.userdata_file (expand)"
+		"[root] provider[\"registry.terraform.io/massdriver-cloud/jq\"]" [label = "provider[\"registry.terraform.io/massdriver-cloud/jq\"]", shape = "diamond"]
+		"[root] var.instance_type" [label = "var.instance_type", shape = "note"]
+		"[root] aws_instance.grafana (expand)" -> "[root] aws_internet_gateway.igw (expand)"
+		"[root] aws_instance.grafana (expand)" -> "[root] aws_security_group.sg (expand)"
+		"[root] aws_instance.grafana (expand)" -> "[root] aws_subnet.pubsub (expand)"
+		"[root] aws_instance.grafana (expand)" -> "[root] local.lastest_amazon_linux2 (expand)"
+		"[root] aws_instance.grafana (expand)" -> "[root] local.userdata_content (expand)"
 		"[root] aws_internet_gateway.igw (expand)" -> "[root] aws_vpc.grafana (expand)"
 		"[root] aws_route_table.route (expand)" -> "[root] aws_internet_gateway.igw (expand)"
 		"[root] aws_route_table_association.route_asso (expand)" -> "[root] aws_route_table.route (expand)"
 		"[root] aws_route_table_association.route_asso (expand)" -> "[root] aws_subnet.pubsub (expand)"
-		"[root] aws_security_group.grafana_sg (orphan)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
 		"[root] aws_security_group.sg (expand)" -> "[root] aws_vpc.grafana (expand)"
 		"[root] aws_security_group_rule.grafana_rule (expand)" -> "[root] aws_security_group.sg (expand)"
 		"[root] aws_security_group_rule.grafana_rule (expand)" -> "[root] local.my_public_ip (expand)"
 		"[root] aws_security_group_rule.outbound_rule (expand)" -> "[root] aws_security_group.sg (expand)"
 		"[root] aws_security_group_rule.ssh_rule (expand)" -> "[root] aws_security_group.sg (expand)"
+		"[root] aws_security_group_rule.ssh_rule (expand)" -> "[root] local.instance_connect_ip (expand)"
 		"[root] aws_subnet.pubsub (expand)" -> "[root] aws_vpc.grafana (expand)"
+		"[root] aws_subnet.pubsub (expand)" -> "[root] local.subnets (expand)"
 		"[root] aws_vpc.grafana (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
-		"[root] aws_vpc_peering_connection.peer_j2d (orphan)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
 		"[root] data.aws_ami.latest_amzn2 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
-		"[root] data.http.curl_ip (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/http\"]"
-		"[root] data.local_file.userdata_file (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"]"
-		"[root] local.my_public_ip (expand)" -> "[root] data.http.curl_ip (expand)"
-		"[root] output.public_ip (expand)" -> "[root] aws_instance.grafana_ec2 (expand)"
-		"[root] output.userdata (expand)" -> "[root] data.local_file.userdata_file (expand)"
-		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.grafana_ec2 (expand)"
+		"[root] data.aws_ec2_instance_type_offerings.azs (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_ec2_instance_type_offerings.azs (expand)" -> "[root] var.instance_type"
+		"[root] data.aws_region.current (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.http.instance_connect_ip_ranges (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/http\"]"
+		"[root] data.http.public_ip (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/http\"]"
+		"[root] data.jq_query.instance_connect_regional_ip_range (expand)" -> "[root] data.aws_region.current (expand)"
+		"[root] data.jq_query.instance_connect_regional_ip_range (expand)" -> "[root] data.http.instance_connect_ip_ranges (expand)"
+		"[root] data.jq_query.instance_connect_regional_ip_range (expand)" -> "[root] provider[\"registry.terraform.io/massdriver-cloud/jq\"]"
+		"[root] data.local_file.userdata (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"]"
+		"[root] local.instance_connect_ip (expand)" -> "[root] data.jq_query.instance_connect_regional_ip_range (expand)"
+		"[root] local.lastest_amazon_linux2 (expand)" -> "[root] data.aws_ami.latest_amzn2 (expand)"
+		"[root] local.my_public_ip (expand)" -> "[root] data.http.public_ip (expand)"
+		"[root] local.subnets (expand)" -> "[root] data.aws_ec2_instance_type_offerings.azs (expand)"
+		"[root] local.userdata_content (expand)" -> "[root] data.local_file.userdata (expand)"
+		"[root] output.public_ip (expand)" -> "[root] aws_instance.grafana (expand)"
+		"[root] output.subnets (expand)" -> "[root] local.subnets (expand)"
+		"[root] output.userdata (expand)" -> "[root] data.local_file.userdata (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.grafana (expand)"
 		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.route_asso (expand)"
-		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group.grafana_sg (orphan)"
 		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group_rule.grafana_rule (expand)"
 		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group_rule.outbound_rule (expand)"
 		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group_rule.ssh_rule (expand)"
-		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_vpc_peering_connection.peer_j2d (orphan)"
-		"[root] provider[\"registry.terraform.io/hashicorp/http\"] (close)" -> "[root] data.http.curl_ip (expand)"
-		"[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)" -> "[root] data.local_file.userdata_file (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/http\"] (close)" -> "[root] data.http.instance_connect_ip_ranges (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/http\"] (close)" -> "[root] data.http.public_ip (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)" -> "[root] data.local_file.userdata (expand)"
+		"[root] provider[\"registry.terraform.io/massdriver-cloud/jq\"] (close)" -> "[root] data.jq_query.instance_connect_regional_ip_range (expand)"
 		"[root] root" -> "[root] output.public_ip (expand)"
+		"[root] root" -> "[root] output.subnets (expand)"
 		"[root] root" -> "[root] output.userdata (expand)"
 		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
 		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/http\"] (close)"
 		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/massdriver-cloud/jq\"] (close)"
 	}
 }
 
