@@ -1,0 +1,55 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_instance.webserver (expand)" [label = "aws_instance.webserver", shape = "box"]
+		"[root] aws_internet_gateway.igw (expand)" [label = "aws_internet_gateway.igw", shape = "box"]
+		"[root] aws_key_pair.key_pair (expand)" [label = "aws_key_pair.key_pair", shape = "box"]
+		"[root] aws_route_table.public_route (expand)" [label = "aws_route_table.public_route", shape = "box"]
+		"[root] aws_route_table_association.public_subnet_association (expand)" [label = "aws_route_table_association.public_subnet_association", shape = "box"]
+		"[root] aws_security_group.ssh_security (expand)" [label = "aws_security_group.ssh_security", shape = "box"]
+		"[root] aws_security_group.web_security (expand)" [label = "aws_security_group.web_security", shape = "box"]
+		"[root] aws_subnet.public_subnet (expand)" [label = "aws_subnet.public_subnet", shape = "box"]
+		"[root] aws_vpc.custom_vpc (expand)" [label = "aws_vpc.custom_vpc", shape = "box"]
+		"[root] data.aws_ami.ubuntu (expand)" [label = "data.aws_ami.ubuntu", shape = "box"]
+		"[root] data.http.my_public_ip (expand)" [label = "data.http.my_public_ip", shape = "box"]
+		"[root] data.local_file.public_key (expand)" [label = "data.local_file.public_key", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/http\"]" [label = "provider[\"registry.terraform.io/hashicorp/http\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/local\"]" [label = "provider[\"registry.terraform.io/hashicorp/local\"]", shape = "diamond"]
+		"[root] var.server_port" [label = "var.server_port", shape = "note"]
+		"[root] var.ssh_port" [label = "var.ssh_port", shape = "note"]
+		"[root] var.vpc_cidr" [label = "var.vpc_cidr", shape = "note"]
+		"[root] aws_instance.webserver (expand)" -> "[root] aws_key_pair.key_pair (expand)"
+		"[root] aws_instance.webserver (expand)" -> "[root] aws_security_group.ssh_security (expand)"
+		"[root] aws_instance.webserver (expand)" -> "[root] aws_security_group.web_security (expand)"
+		"[root] aws_instance.webserver (expand)" -> "[root] data.aws_ami.ubuntu (expand)"
+		"[root] aws_internet_gateway.igw (expand)" -> "[root] aws_vpc.custom_vpc (expand)"
+		"[root] aws_key_pair.key_pair (expand)" -> "[root] data.local_file.public_key (expand)"
+		"[root] aws_key_pair.key_pair (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_route_table.public_route (expand)" -> "[root] aws_internet_gateway.igw (expand)"
+		"[root] aws_route_table_association.public_subnet_association (expand)" -> "[root] aws_route_table.public_route (expand)"
+		"[root] aws_route_table_association.public_subnet_association (expand)" -> "[root] aws_subnet.public_subnet (expand)"
+		"[root] aws_security_group.ssh_security (expand)" -> "[root] aws_route_table_association.public_subnet_association (expand)"
+		"[root] aws_security_group.ssh_security (expand)" -> "[root] local.my_public_ip (expand)"
+		"[root] aws_security_group.ssh_security (expand)" -> "[root] var.ssh_port"
+		"[root] aws_security_group.web_security (expand)" -> "[root] aws_vpc.custom_vpc (expand)"
+		"[root] aws_security_group.web_security (expand)" -> "[root] var.server_port"
+		"[root] aws_subnet.public_subnet (expand)" -> "[root] aws_vpc.custom_vpc (expand)"
+		"[root] aws_vpc.custom_vpc (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_vpc.custom_vpc (expand)" -> "[root] var.vpc_cidr"
+		"[root] data.aws_ami.ubuntu (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.http.my_public_ip (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/http\"]"
+		"[root] data.local_file.public_key (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"]"
+		"[root] local.my_public_ip (expand)" -> "[root] data.http.my_public_ip (expand)"
+		"[root] output.public_ip (expand)" -> "[root] aws_instance.webserver (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.webserver (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/http\"] (close)" -> "[root] data.http.my_public_ip (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)" -> "[root] data.local_file.public_key (expand)"
+		"[root] root" -> "[root] output.public_ip (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/http\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)"
+	}
+}
+

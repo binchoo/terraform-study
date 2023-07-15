@@ -1,0 +1,21 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_subnet.primary (expand)" [label = "aws_subnet.primary", shape = "box"]
+		"[root] aws_subnet.secondary (expand)" [label = "aws_subnet.secondary", shape = "box"]
+		"[root] data.aws_ec2_instance_type_offerings.t2micro (expand)" [label = "data.aws_ec2_instance_type_offerings.t2micro", shape = "box"]
+		"[root] data.aws_vpc.default (expand)" [label = "data.aws_vpc.default", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] aws_subnet.primary (expand)" -> "[root] data.aws_ec2_instance_type_offerings.t2micro (expand)"
+		"[root] aws_subnet.primary (expand)" -> "[root] data.aws_vpc.default (expand)"
+		"[root] aws_subnet.secondary (expand)" -> "[root] data.aws_ec2_instance_type_offerings.t2micro (expand)"
+		"[root] aws_subnet.secondary (expand)" -> "[root] data.aws_vpc.default (expand)"
+		"[root] data.aws_ec2_instance_type_offerings.t2micro (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_vpc.default (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_subnet.primary (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_subnet.secondary (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
